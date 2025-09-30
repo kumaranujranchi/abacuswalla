@@ -136,7 +136,7 @@ export default function RoboticsPage() {
           <p className="text-muted-foreground mb-6">
             Begin your journey into the world of robotics
           </p>
-          <Button asChild size="lg" className="rounded-full font-accent cta-gradient-button" data-testid="button-book-demo">
+          <Button asChild size="lg" className="rounded-full font-accent cta-gradient-button" data-testid="button-book-demo-program">
             <Link href="/contact">Book a Free Demo Class</Link>
           </Button>
         </div>

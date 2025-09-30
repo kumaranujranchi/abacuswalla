@@ -136,7 +136,7 @@ export default function MemorySciencePage() {
           <p className="text-muted-foreground mb-6">
             Transform your child's memory capabilities forever
           </p>
-          <Button asChild size="lg" className="rounded-full font-accent cta-gradient-button" data-testid="button-book-demo">
+          <Button asChild size="lg" className="rounded-full font-accent cta-gradient-button" data-testid="button-book-demo-program">
             <Link href="/contact">Book a Free Demo Class</Link>
           </Button>
         </div>
