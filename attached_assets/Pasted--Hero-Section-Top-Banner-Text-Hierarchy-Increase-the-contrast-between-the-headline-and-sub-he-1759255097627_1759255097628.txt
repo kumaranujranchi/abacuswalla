@@ -1,0 +1,55 @@
+🔹 Hero Section (Top Banner)
+
+Text Hierarchy – Increase the contrast between the headline and sub-headline (size difference or font weight).
+
+CTA Buttons – Differentiate the two buttons (“Try Free Puzzle” and “Book Demo Class”) by using primary vs. secondary colors (e.g., one in blue, one in yellow gradient).
+
+Background Overlay – Add a light dark overlay on the hero image so the text and buttons stand out more clearly.
+
+🔹 Why Choose Abacuswalla
+
+Icon Styling – Right now all icons look the same; add subtle colors based on theme (e.g., blue for math, green for focus, orange for confidence).
+
+Grid Layout – Increase spacing between the 3x2 grid items for better breathing room.
+
+🔹 Our Programs
+
+Card Design – Add hover effects (light shadow + button color change) to make the program cards more interactive.
+
+Illustrations – The illustrations are a bit large; reduce their size and bring the text upward for balance.
+
+CTA Alignment – Highlight “Enroll Now” as the primary button (solid color) and make “Learn More” secondary (outlined).
+
+🔹 Interactive Puzzle Section
+
+Balance – The text block on the left and the puzzle image on the right don’t look balanced. Adjust sizing to make them visually equal.
+
+Headline Emphasis – Add a stronger headline like “Gamified Learning = Faster Results” to capture attention.
+
+🔹 Testimonials
+
+Card Layout – Consider turning testimonials into a slider for better engagement.
+
+Visual Trust – Add small profile pictures (dummy avatars) next to parent names to make them feel more authentic.
+
+🔹 Call-to-Action (Blue Bar)
+
+Background Gradient – Instead of solid blue, use a subtle gradient (blue → lighter blue).
+
+Button Contrast – Add a hover effect to the yellow button (e.g., gradient yellow to orange).
+
+🔹 Footer
+
+Spacing – Increase padding at the top of the footer to avoid the cramped look.
+
+Social Media Icons – Add icons (Facebook, Instagram, etc.) to build trust and encourage engagement.
+
+Column Hierarchy – Move the “Contact Us” section to the left side so parents can spot it quickly.
+
+👉 Overall:
+
+Add hover animations (buttons, cards, icons).
+
+Use more spacing and clear color hierarchy.
+
+Focus on making CTAs and testimonials more engaging.

@@ -3,8 +3,11 @@ import { BenefitCard } from "@/components/BenefitCard";
 import { ProgramCard } from "@/components/ProgramCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { Brain, Zap, Target, Award, TrendingUp, Users } from "lucide-react";
+import { Brain, Zap, Target, Award, TrendingUp, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback } from "react";
 import juniorImage from "@assets/generated_images/Junior_level_illustration_d3b73f7e.png";
 import foundationImage from "@assets/generated_images/Foundation_level_illustration_5a6285b3.png";
 import advancedImage from "@assets/generated_images/Advanced_level_illustration_435fe745.png";
@@ -12,6 +15,16 @@ import grandmasterImage from "@assets/generated_images/Grand_Master_achievement_
 import puzzleImage from "@assets/generated_images/Interactive_puzzle_preview_34bf6088.png";
 
 export default function HomePage() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   //todo: remove mock functionality
   const programs = [
     {
@@ -110,36 +123,48 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 animate-slide-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 animate-slide-up">
           <BenefitCard
             icon={Brain}
             title="Enhanced Focus"
             description="Improves concentration and attention span through structured practice and mental visualization."
+            iconColor="text-accent"
+            iconBgColor="bg-accent/10"
           />
           <BenefitCard
             icon={Zap}
             title="Lightning Fast Math"
             description="Develops rapid calculation abilities and mental arithmetic skills beyond traditional methods."
+            iconColor="text-primary"
+            iconBgColor="bg-primary/10"
           />
           <BenefitCard
             icon={Target}
             title="Academic Excellence"
             description="Boosts overall academic performance with improved problem-solving and analytical thinking."
+            iconColor="text-secondary"
+            iconBgColor="bg-secondary/10"
           />
           <BenefitCard
             icon={Award}
             title="Confidence Building"
             description="Increases self-esteem as children master complex calculations and achieve measurable progress."
+            iconColor="text-accent"
+            iconBgColor="bg-accent/10"
           />
           <BenefitCard
             icon={TrendingUp}
             title="Cognitive Development"
             description="Strengthens memory, visualization, and logical reasoning abilities for lifelong learning."
+            iconColor="text-primary"
+            iconBgColor="bg-primary/10"
           />
           <BenefitCard
             icon={Users}
             title="Expert Instructors"
             description="Learn from certified teachers with years of experience in abacus education and child development."
+            iconColor="text-secondary"
+            iconBgColor="bg-secondary/10"
           />
         </div>
       </section>
@@ -163,29 +188,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">
-              Try Our Interactive Puzzles
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Let your child experience the fun of learning with our gamified math puzzles. Earn stars, unlock badges, and watch their skills grow!
+      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <div>
+              <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
+                Interactive Learning
+              </Badge>
+              <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
+                Gamified Learning ={" "}
+                <span className="text-primary">Faster Results</span>
+              </h2>
+            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Let your child experience the fun of learning with our gamified math puzzles. Earn stars, unlock badges, and watch their skills grow with every challenge!
             </p>
             <Button
               asChild
               size="lg"
-              className="rounded-full font-accent"
+              className="rounded-full font-accent cta-hover"
               data-testid="button-explore-puzzles"
             >
-              <Link href="/puzzles">Explore Puzzles</Link>
+              <Link href="/puzzles">Explore Free Puzzles</Link>
             </Button>
           </div>
           <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-2xl" />
             <img
               src={puzzleImage}
               alt="Interactive puzzle preview"
-              className="rounded-lg shadow-xl"
+              className="relative rounded-xl shadow-2xl hover:shadow-primary/20 transition-shadow duration-300"
             />
           </div>
         </div>
@@ -202,18 +234,44 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.name} {...testimonial} />
-            ))}
+          <div className="relative">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex gap-6">
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial.name} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0">
+                    <TestimonialCard {...testimonial} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur hover-elevate"
+              onClick={scrollPrev}
+              data-testid="button-testimonials-prev"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur hover-elevate"
+              onClick={scrollNext}
+              data-testid="button-testimonials-next"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full"
+              className="rounded-full hover-elevate"
               data-testid="button-view-testimonials"
             >
               <Link href="/testimonials">View All Stories</Link>
@@ -222,23 +280,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div className="bg-primary text-primary-foreground rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl mb-4">
-            Ready to Start Your Child's Journey?
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
-            Book a free demo class today and see the difference our proven methods can make in your child's mathematical abilities.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            variant="secondary"
-            className="rounded-full font-accent text-base"
-            data-testid="button-cta-book-demo"
-          >
-            <Link href="/contact">Book Free Demo Class</Link>
-          </Button>
+      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
+        <div className="bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.1),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(255,255,255,0.05),transparent_50%)]" />
+          
+          <div className="relative z-10">
+            <h2 className="font-heading font-bold text-3xl md:text-5xl mb-6">
+              Ready to Start Your Child's Journey?
+            </h2>
+            <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto opacity-95">
+              Book a free demo class today and see the difference our proven methods can make in your child's mathematical abilities.
+            </p>
+            <a
+              href="/contact"
+              className="cta-gradient-button"
+              data-testid="button-cta-book-demo"
+            >
+              Book Free Demo Class
+            </a>
+          </div>
         </div>
       </section>
     </div>

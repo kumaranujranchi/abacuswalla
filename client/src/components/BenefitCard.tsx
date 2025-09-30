@@ -5,14 +5,16 @@ interface BenefitCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
+  iconColor?: string;
+  iconBgColor?: string;
 }
 
-export function BenefitCard({ icon: Icon, title, description }: BenefitCardProps) {
+export function BenefitCard({ icon: Icon, title, description, iconColor = "text-primary", iconBgColor = "bg-primary/10" }: BenefitCardProps) {
   return (
-    <Card className="hover-elevate transition-all" data-testid={`card-benefit-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Card className="hover-elevate active-elevate-2 transition-all" data-testid={`card-benefit-${title.toLowerCase().replace(/\s+/g, '-')}`}>
       <CardContent className="p-6">
-        <div className="mb-4 inline-flex p-3 rounded-lg bg-primary/10">
-          <Icon className="h-6 w-6 text-primary" />
+        <div className={`mb-4 inline-flex p-3 rounded-lg ${iconBgColor}`}>
+          <Icon className={`h-6 w-6 ${iconColor}`} />
         </div>
         <h3 className="font-heading font-semibold text-xl mb-2">{title}</h3>
         <p className="text-muted-foreground">{description}</p>

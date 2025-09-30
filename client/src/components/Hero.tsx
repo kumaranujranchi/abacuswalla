@@ -11,7 +11,7 @@ export function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-3xl">
@@ -20,12 +20,12 @@ export function Hero() {
             500+ Happy Students
           </Badge>
 
-          <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 animate-slide-up">
+          <h1 className="font-heading font-extrabold text-5xl md:text-7xl lg:text-8xl text-white mb-6 animate-slide-up leading-tight">
             Unlock Your Child's{" "}
             <span className="text-accent yellow-glow">Math Genius</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-base md:text-lg text-white/80 mb-10 max-w-2xl animate-slide-up font-normal" style={{ animationDelay: '0.1s' }}>
             Transform your child's mathematical abilities through proven abacus-based learning. Build confidence, speed, and mental agility with our engaging programs.
           </p>
 
@@ -33,20 +33,18 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="rounded-full font-accent text-base"
+              className="rounded-full font-accent text-base cta-hover"
               data-testid="button-try-puzzle"
             >
               <Link href="/puzzles">Try a Free Puzzle</Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="rounded-full font-accent text-base bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+            <a
+              href="/contact"
+              className="cta-gradient-button"
               data-testid="button-hero-book-demo"
             >
-              <Link href="/contact">Book a Demo Class</Link>
-            </Button>
+              Book a Demo Class
+            </a>
           </div>
 
           <div className="flex items-center gap-6 mt-8">

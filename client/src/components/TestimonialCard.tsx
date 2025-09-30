@@ -22,7 +22,7 @@ export function TestimonialCard({
   location,
 }: TestimonialCardProps) {
   return (
-    <Card className="hover-elevate transition-all" data-testid={`card-testimonial-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Card className="hover-elevate active-elevate-2 transition-all h-full" data-testid={`card-testimonial-${name.toLowerCase().replace(/\s+/g, '-')}`}>
       <CardContent className="p-6">
         <div className="flex items-center gap-4 mb-4">
           <Avatar>
