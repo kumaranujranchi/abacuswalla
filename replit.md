@@ -21,7 +21,7 @@ Preferred communication style: Simple, everyday language.
 
 **Design System**
 - Shadcn/ui component library (New York variant) for consistent UI components
-- Custom color palette supporting light/dark themes with educational focus (trustworthy blue primary, playful purple secondary, success green accent)
+- Custom color palette supporting light/dark themes with educational focus (trustworthy blue primary, playful yellow secondary, success green accent)
 - Typography hierarchy using Google Fonts: Fredoka (headings), Inter (body), Poppins (accents)
 - Theme switching capability with localStorage persistence
 
