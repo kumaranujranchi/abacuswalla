@@ -54,10 +54,10 @@ export default function PsychosomaticTestPage() {
               Understand the mind-body connection and support holistic development.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-book-psychosomatic">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-book-psychosomatic">
                 <Link href="/contact">Book Assessment</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-learn-psychosomatic">
+              <Button asChild size="lg" variant="outline" className="rounded-full cta-hover" data-testid="button-learn-psychosomatic">
                 <a href="#details">Learn More</a>
               </Button>
             </div>
@@ -206,7 +206,7 @@ export default function PsychosomaticTestPage() {
             Book a psychosomatic assessment for comprehensive insights and guidance
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-book-cta">
+            <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-book-cta">
               <Link href="/contact">Book Assessment</Link>
             </Button>
             <div className="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full">

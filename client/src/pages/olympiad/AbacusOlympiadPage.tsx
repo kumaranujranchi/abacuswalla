@@ -117,10 +117,10 @@ export default function AbacusOlympiadPage() {
               Showcase your abacus skills and win exciting prizes and scholarships!
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-register">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-register">
                 <Link href="/contact">Register Now</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-sample">
+              <Button asChild size="lg" variant="outline" className="rounded-full cta-hover" data-testid="button-sample">
                 <a href="#materials">Get Sample Papers</a>
               </Button>
             </div>
@@ -250,7 +250,7 @@ export default function AbacusOlympiadPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full rounded-full"
+                    className="w-full rounded-full cta-hover"
                     disabled={!selectedClass}
                     data-testid="button-download"
                   >
@@ -290,7 +290,7 @@ export default function AbacusOlympiadPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Register now for the National Abacus Olympiad and showcase your mental math skills
           </p>
-          <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-register-cta">
+          <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-register-cta">
             <Link href="/contact">Register for Olympiad</Link>
           </Button>
         </div>

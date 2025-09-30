@@ -52,10 +52,10 @@ export default function DMITPage() {
               through scientific fingerprint analysis and personalized guidance.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-book-dmit">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-book-dmit">
                 <Link href="/contact">Book DMIT Test</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-learn-dmit">
+              <Button asChild size="lg" variant="outline" className="rounded-full cta-hover" data-testid="button-learn-dmit">
                 <a href="#details">Learn More</a>
               </Button>
             </div>
@@ -195,7 +195,7 @@ export default function DMITPage() {
             Book a DMIT assessment today and get personalized guidance for your child's success
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-book-cta">
+            <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-book-cta">
               <Link href="/contact">Book DMIT Test</Link>
             </Button>
             <div className="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full">

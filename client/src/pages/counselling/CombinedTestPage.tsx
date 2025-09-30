@@ -61,10 +61,10 @@ export default function CombinedTestPage() {
               Psychosomatic assessment package. Save money while gaining complete insights.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-book-combined">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-book-combined">
                 <Link href="/contact">Book Combined Test</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-compare">
+              <Button asChild size="lg" variant="outline" className="rounded-full cta-hover" data-testid="button-compare">
                 <a href="#package">View Package</a>
               </Button>
             </div>
@@ -147,7 +147,7 @@ export default function CombinedTestPage() {
                   </div>
 
                   <div className="border-t pt-6 space-y-4">
-                    <Button asChild size="lg" className="w-full rounded-full" data-testid="button-book-package">
+                    <Button asChild size="lg" className="w-full rounded-full cta-hover" data-testid="button-book-package">
                       <Link href="/contact">Book Combined Assessment</Link>
                     </Button>
                     
@@ -224,7 +224,7 @@ export default function CombinedTestPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Book the combined assessment package today and save while gaining comprehensive insights
           </p>
-          <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-book-final-cta">
+          <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-book-final-cta">
             <Link href="/contact">Book Combined Assessment - Save ₹999</Link>
           </Button>
         </div>

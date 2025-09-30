@@ -91,10 +91,10 @@ export default function TalentOlympiadPage() {
               Excel across all subjects and win scholarships!
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-register">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-register">
                 <Link href="/contact">Register Now</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-materials">
+              <Button asChild size="lg" variant="outline" className="rounded-full cta-hover" data-testid="button-materials">
                 <a href="#materials">Get Study Materials</a>
               </Button>
             </div>
@@ -233,7 +233,7 @@ export default function TalentOlympiadPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full rounded-full"
+                    className="w-full rounded-full cta-hover"
                     disabled={!selectedClass}
                     data-testid="button-download"
                   >
@@ -260,7 +260,7 @@ export default function TalentOlympiadPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Register for Abacuswalla Talent Olympiad and compete with the best
           </p>
-          <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-register-cta">
+          <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-register-cta">
             <Link href="/contact">Register Now</Link>
           </Button>
         </div>
