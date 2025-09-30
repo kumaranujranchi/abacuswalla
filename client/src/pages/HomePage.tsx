@@ -101,7 +101,7 @@ export default function HomePage() {
       <Hero />
 
       <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">
             Why Choose Abacuswalla?
           </h2>
@@ -110,7 +110,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 animate-slide-up">
           <BenefitCard
             icon={Brain}
             title="Enhanced Focus"

@@ -15,21 +15,21 @@ export function Hero() {
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-3xl">
-          <Badge className="mb-6 bg-accent/20 backdrop-blur-sm border-accent text-accent-foreground" data-testid="badge-trust">
+          <Badge className="mb-6 bg-accent/20 backdrop-blur-sm border-accent text-accent-foreground animate-fade-in" data-testid="badge-trust">
             <Users className="h-3 w-3 mr-1" />
             500+ Happy Students
           </Badge>
 
-          <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6">
+          <h1 className="font-heading font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 animate-slide-up">
             Unlock Your Child's{" "}
-            <span className="text-accent">Math Genius</span>
+            <span className="text-accent yellow-glow">Math Genius</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl animate-slide-up" style={{ animationDelay: '0.1s' }}>
             Transform your child's mathematical abilities through proven abacus-based learning. Build confidence, speed, and mental agility with our engaging programs.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Button
               asChild
               size="lg"

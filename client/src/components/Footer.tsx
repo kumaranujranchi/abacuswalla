@@ -43,30 +43,30 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-home">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-home">
                     Home
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/programs">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-programs">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-programs">
                     Programs
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-about">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-about">
                     About Us
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-contact">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-contact">
                     Contact
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -77,23 +77,23 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/puzzles">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-puzzles">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-puzzles">
                     Puzzles & Games
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/resources">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-resources">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-resources">
                     Worksheets
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/testimonials">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors" data-testid="link-footer-testimonials">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-testimonials">
                     Success Stories
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -126,10 +126,10 @@ export function Footer() {
               href="https://synergybrandarchitect.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-[#FF6B35] hover:text-[#FF8555] hover:underline transition-all duration-300"
               data-testid="link-synergy"
             >
-              Ayenergy Brand Architect
+              Synergy Brand Architect
             </a>
           </p>
         </div>

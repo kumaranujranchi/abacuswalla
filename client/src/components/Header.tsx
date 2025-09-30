@@ -22,7 +22,7 @@ export function Header() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <div className="text-2xl md:text-3xl font-heading font-bold text-primary">
+            <div className="text-2xl md:text-3xl font-heading font-bold text-primary yellow-glow transition-all duration-300 hover:scale-105">
               Abacuswalla
             </div>
           </Link>
@@ -30,8 +30,8 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
-                <a
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                <span
+                  className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
                     location === item.href
                       ? "text-primary"
                       : "text-muted-foreground"
@@ -39,7 +39,7 @@ export function Header() {
                   data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {item.label}
-                </a>
+                </span>
               </Link>
             ))}
           </nav>
@@ -75,8 +75,8 @@ export function Header() {
             <nav className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
-                  <a
-                    className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                  <span
+                    className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors cursor-pointer ${
                       location === item.href
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover-elevate"
@@ -85,7 +85,7 @@ export function Header() {
                     data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {item.label}
-                  </a>
+                  </span>
                 </Link>
               ))}
               <Button
