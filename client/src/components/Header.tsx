@@ -50,7 +50,7 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/">
               <span
-                className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                className={`relative text-sm font-medium transition-all duration-300 cursor-pointer group ${
                   location === "/"
                     ? "text-primary"
                     : "text-muted-foreground"
@@ -58,6 +58,9 @@ export function Header() {
                 data-testid="link-nav-home"
               >
                 Home
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${
+                  location === "/" ? "w-full" : "w-0 group-hover:w-full"
+                }`}></span>
               </span>
             </Link>
 
@@ -65,7 +68,7 @@ export function Header() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger 
-                    className={`text-sm font-medium h-auto py-0 ${
+                    className={`relative text-sm font-medium h-auto py-0 group ${
                       location.startsWith("/programs")
                         ? "text-primary"
                         : "text-muted-foreground"
@@ -73,6 +76,9 @@ export function Header() {
                     data-testid="link-nav-programs"
                   >
                     Programs
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${
+                      location.startsWith("/programs") ? "w-full" : "w-0 group-hover:w-full"
+                    }`}></span>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -80,10 +86,10 @@ export function Header() {
                         <NavigationMenuLink key={course.href} asChild>
                           <Link href={course.href}>
                             <div
-                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate active-elevate-2 cursor-pointer"
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all duration-300 hover-elevate active-elevate-2 hover:scale-105 cursor-pointer group"
                               data-testid={`link-course-${course.label.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
                             >
-                              <div className="text-sm font-medium leading-none">{course.label}</div>
+                              <div className="text-sm font-medium leading-none group-hover:text-primary transition-colors">{course.label}</div>
                             </div>
                           </Link>
                         </NavigationMenuLink>
@@ -97,7 +103,7 @@ export function Header() {
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                  className={`relative text-sm font-medium transition-all duration-300 cursor-pointer group ${
                     location === item.href
                       ? "text-primary"
                       : "text-muted-foreground"
@@ -105,6 +111,9 @@ export function Header() {
                   data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {item.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${
+                    location === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`}></span>
                 </span>
               </Link>
             ))}
