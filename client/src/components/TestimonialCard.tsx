@@ -22,7 +22,7 @@ export function TestimonialCard({
   location,
 }: TestimonialCardProps) {
   return (
-    <Card className="hover-elevate active-elevate-2 transition-all h-full" data-testid={`card-testimonial-${name.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Card className="hover-elevate active-elevate-2 transition-all h-full" data-testid={`card-testimonial-${name.toLowerCase().replace(/\s+/g, '-')}`} data-testimonial-card>
       <CardContent className="p-6">
         <div className="flex items-center gap-4 mb-4">
           <Avatar>
@@ -37,7 +37,7 @@ export function TestimonialCard({
 
         <div className="flex items-center gap-1 mb-3">
           {Array.from({ length: rating }).map((_, i) => (
-            <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+            <Star key={i} className="h-4 w-4 fill-accent text-accent" data-star />
           ))}
         </div>
 

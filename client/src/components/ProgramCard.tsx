@@ -20,12 +20,16 @@ export function ProgramCard({ title, ageRange, duration, image, benefits, color 
   };
 
   return (
-    <Card className={`overflow-hidden hover-elevate active-elevate-2 transition-all ${colorClasses[color]}`} data-testid={`card-program-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Card 
+      className={`overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-2 program-card-enter ${colorClasses[color]}`} 
+      data-testid={`card-program-${title.toLowerCase().replace(/\s+/g, '-')}`}
+      data-program-card
+    >
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover card-parallax group-hover:scale-105"
         />
       </div>
       <CardHeader className="gap-2">
@@ -46,7 +50,7 @@ export function ProgramCard({ title, ageRange, duration, image, benefits, color 
         </ul>
       </CardContent>
       <CardFooter className="gap-2 flex-wrap">
-        <Button asChild variant="default" className="flex-1 rounded-full font-accent cta-hover" data-testid={`button-enroll-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+        <Button asChild variant="default" className="flex-1 rounded-full font-accent cta-gradient-button" data-testid={`button-enroll-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <Link href="/contact">Enroll Now</Link>
         </Button>
         <Button asChild variant="outline" className="flex-1 rounded-full hover-elevate" data-testid={`button-learn-${title.toLowerCase().replace(/\s+/g, '-')}`}>

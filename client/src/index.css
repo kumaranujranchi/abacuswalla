@@ -87,6 +87,16 @@
   --font-accent: 'Poppins', 'Inter', sans-serif;
   
   --radius: .5rem;
+  
+  /* Animation variables */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 420ms;
+  
   --shadow-2xs: 0px 1px 2px 0px hsl(220 15% 20% / 0.05);
   --shadow-xs: 0px 1px 3px 0px hsl(220 15% 20% / 0.10);
   --shadow-sm: 0px 2px 4px -1px hsl(220 15% 20% / 0.06), 0px 1px 2px -1px hsl(220 15% 20% / 0.10);
@@ -392,6 +402,97 @@
   .animate-scale-in {
     animation: scaleIn 0.4s ease-out;
   }
+  
+  /* Staggered fade-up animation for scroll-triggered elements */
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity var(--duration-slow) var(--ease-smooth), 
+                transform var(--duration-slow) var(--ease-smooth);
+  }
+  
+  .animate-fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Card hover parallax */
+  .card-parallax {
+    transition: transform var(--duration-normal) var(--ease-smooth);
+  }
+  
+  /* 3D tilt effect for icons */
+  .icon-3d-tilt {
+    transform-style: preserve-3d;
+    transition: transform var(--duration-normal) var(--ease-smooth);
+  }
+  
+  .icon-3d-tilt:hover {
+    transform: perspective(1000px) rotateX(6deg) rotateY(6deg);
+  }
+  
+  /* Glow ring on icon hover */
+  .icon-glow-ring {
+    position: relative;
+  }
+  
+  .icon-glow-ring::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .icon-glow-ring:hover::after {
+    opacity: 1;
+  }
+  
+  /* Floating/bobbing animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  
+  .animate-float:hover {
+    animation-play-state: running;
+  }
+  
+  /* Program card scale on load */
+  .program-card-enter {
+    animation: programCardEnter 0.6s var(--ease-smooth) forwards;
+  }
+  
+  /* Ripple effect container */
+  .ripple-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+  }
+  
+  /* Gradient shift animation for CTA strip */
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+  }
+  
+  /* Parallax background */
+  .parallax-bg {
+    transform: translateZ(0);
+    will-change: transform;
+  }
 
   @keyframes fadeIn {
     from {
@@ -432,6 +533,84 @@
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes programCardEnter {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Staggered entrance for hero text lines */
+  .hero-line-1 {
+    animation: heroLineEnter 0.8s var(--ease-smooth) 0.1s both;
+  }
+  
+  .hero-line-2 {
+    animation: heroLineEnter 0.8s var(--ease-smooth) 0.22s both;
+  }
+  
+  .hero-line-3 {
+    animation: heroLineEnter 0.8s var(--ease-smooth) 0.34s both;
+  }
+  
+  .hero-subline {
+    animation: heroLineEnter 0.8s var(--ease-smooth) 0.54s both;
+  }
+  
+  @keyframes heroLineEnter {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* CTA pulse on load */
+  .cta-pulse-once {
+    animation: ctaPulse 1.2s var(--ease-smooth) 0.8s 1;
+  }
+  
+  @keyframes ctaPulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
     }
   }
 
@@ -555,6 +734,49 @@
     .cta-gradient-button {
       padding: 0.875rem 1.75rem;
       font-size: 0.9375rem;
+    }
+  }
+  
+  /* Accessibility: Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    
+    /* Disable parallax */
+    .parallax-bg {
+      transform: none !important;
+    }
+    
+    /* Disable floating/bobbing */
+    .animate-float {
+      animation: none !important;
+    }
+    
+    /* Keep essential entrance animations but make instant */
+    .animate-fade-up,
+    .hero-line-1,
+    .hero-line-2,
+    .hero-line-3,
+    .hero-subline {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    
+    /* Disable gradient shift */
+    .animate-gradient-shift {
+      animation: none !important;
+    }
+    
+    /* Keep focus states visible but remove motion */
+    .cta-gradient-button:hover,
+    .cta-hover:hover {
+      transform: none !important;
     }
   }
 

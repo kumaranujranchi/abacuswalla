@@ -7,7 +7,16 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Brain, Zap, Target, Award, TrendingUp, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { 
+  initScrollFadeUp, 
+  createRipple, 
+  initProgramCardHover,
+  init3DIconTilt,
+  init3DCarousel,
+  initCTAGradientShift,
+  animateStars
+} from "@/lib/animations";
 import juniorImage from "@assets/generated_images/Junior_level_illustration_d3b73f7e.png";
 import foundationImage from "@assets/generated_images/Foundation_level_illustration_5a6285b3.png";
 import advancedImage from "@assets/generated_images/Advanced_level_illustration_435fe745.png";
@@ -24,6 +33,69 @@ export default function HomePage() {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
+
+  // Initialize animations on mount
+  useEffect(() => {
+    // Scroll-triggered fade-ups
+    const cleanupFadeUp = initScrollFadeUp('.animate-fade-up');
+
+    // Program cards hover parallax
+    document.querySelectorAll('[data-program-card]').forEach((card) => {
+      initProgramCardHover(card as HTMLElement);
+    });
+
+    // Feature icon 3D tilt
+    document.querySelectorAll('[data-feature-icon]').forEach((icon) => {
+      init3DIconTilt(icon as HTMLElement);
+    });
+
+    // Testimonial 3D carousel
+    const testimonialContainer = document.querySelector('[data-testimonial-3d]') as HTMLElement;
+    if (testimonialContainer) {
+      init3DCarousel(testimonialContainer);
+      
+      // Animate stars in testimonial cards
+      document.querySelectorAll('[data-testimonial-card]').forEach((card) => {
+        animateStars(card as HTMLElement);
+      });
+    }
+
+    // CTA gradient animation
+    const ctaStrip = document.querySelector('[data-cta-gradient]') as HTMLElement;
+    if (ctaStrip) {
+      initCTAGradientShift(ctaStrip);
+    }
+
+    // Ripple effect on buttons
+    const rippleButtons = document.querySelectorAll('[data-ripple]');
+    const rippleHandlers = new Map<Element, EventListener>();
+    
+    rippleButtons.forEach((btn) => {
+      const handler = (e: Event) => {
+        if (btn.classList.contains('ripple-container') || btn.parentElement?.classList.contains('ripple-container')) {
+          createRipple(e as MouseEvent, btn as HTMLElement);
+        } else {
+          // Wrap button in container if not already
+          if (!btn.classList.contains('ripple-container')) {
+            btn.classList.add('ripple-container');
+          }
+          createRipple(e as MouseEvent, btn as HTMLElement);
+        }
+      };
+      btn.addEventListener('click', handler);
+      rippleHandlers.set(btn, handler);
+    });
+
+    // Cleanup
+    return () => {
+      if (cleanupFadeUp) cleanupFadeUp();
+      
+      // Remove ripple event listeners
+      rippleHandlers.forEach((handler, btn) => {
+        btn.removeEventListener('click', handler);
+      });
+    };
+  }, []);
 
   //todo: remove mock functionality
   const programs = [
@@ -123,7 +195,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 animate-slide-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           <BenefitCard
             icon={Brain}
             title="Enhanced Focus"
@@ -190,7 +262,7 @@ export default function HomePage() {
 
       <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-up">
             <div>
               <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
                 Interactive Learning
@@ -206,19 +278,23 @@ export default function HomePage() {
             <Button
               asChild
               size="lg"
-              className="rounded-full font-accent cta-hover"
+              className="rounded-full font-accent cta-gradient-button"
               data-testid="button-explore-puzzles"
+              data-ripple
             >
               <Link href="/puzzles">Explore Free Puzzles</Link>
             </Button>
           </div>
-          <div className="relative">
+          <div className="relative animate-fade-up">
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-2xl" />
-            <img
-              src={puzzleImage}
-              alt="Interactive puzzle preview"
-              className="relative rounded-xl shadow-2xl hover:shadow-primary/20 transition-shadow duration-300"
-            />
+            <div className="relative animate-float ripple-container">
+              <img
+                src={puzzleImage}
+                alt="Interactive puzzle preview"
+                className="relative rounded-xl shadow-2xl hover:shadow-primary/20 transition-shadow duration-300"
+                data-ripple
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -234,7 +310,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative" data-testimonial-3d>
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex gap-6">
                 {testimonials.map((testimonial) => (
@@ -251,6 +327,7 @@ export default function HomePage() {
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur hover-elevate"
               onClick={scrollPrev}
               data-testid="button-testimonials-prev"
+              aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-6 w-6" />
             </Button>
@@ -261,6 +338,7 @@ export default function HomePage() {
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur hover-elevate"
               onClick={scrollNext}
               data-testid="button-testimonials-next"
+              aria-label="Next testimonial"
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
@@ -281,7 +359,10 @@ export default function HomePage() {
       </section>
 
       <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
+        <div 
+          className="bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground rounded-3xl p-12 md:p-16 text-center relative overflow-hidden animate-gradient-shift"
+          data-cta-gradient
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.1),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(255,255,255,0.05),transparent_50%)]" />
           
@@ -296,6 +377,7 @@ export default function HomePage() {
               href="/contact"
               className="cta-gradient-button"
               data-testid="button-cta-book-demo"
+              data-ripple
             >
               Book Free Demo Class
             </a>
