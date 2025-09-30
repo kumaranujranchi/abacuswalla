@@ -74,7 +74,11 @@ export default function AbacusOlympiadPage() {
       const response = await fetch("/api/email-captures", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "olympiad" }),
+        body: JSON.stringify({
+          email,
+          source: "olympiad",
+          metadata: JSON.stringify({ selectedClass, olympiadType: "abacus" }),
+        }),
       });
 
       if (response.ok) {

@@ -91,6 +91,7 @@ export const emailCaptures = pgTable("email_captures", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   email: text("email").notNull().unique(),
   source: text("source").notNull(),
+  metadata: text("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -99,7 +100,8 @@ export const insertEmailCaptureSchema = createInsertSchema(emailCaptures).omit({
   createdAt: true,
 }).extend({
   email: z.string().email("Invalid email address"),
-  source: z.enum(["newsletter", "worksheet", "quiz"]),
+  source: z.enum(["newsletter", "worksheet", "quiz", "olympiad"]),
+  metadata: z.string().optional(),
 });
 
 export type InsertEmailCapture = z.infer<typeof insertEmailCaptureSchema>;
