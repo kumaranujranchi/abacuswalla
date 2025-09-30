@@ -1,0 +1,113 @@
+Goal: add tasteful, high-performance animations across the homepage to increase engagement while preserving readability and accessibility. Use CSS for simple transitions and a lightweight animation library (GSAP preferred) for complex timeline/scroll animations. Provide a CSS-only fallback and respect prefers-reduced-motion.
+
+Design language / theme:
+
+Primary blue: #1e90ff / secondary blue #0077cc
+
+Accent yellow: #ffd24d → #ffd700
+
+Rounded corners, soft shadows, moderate spacing
+
+Use site variables (--primary, --accent, --radius, --ease) and keep animations under 400ms for micro-interactions
+
+Deliverables:
+
+HTML snippets (minimal, semantic)
+
+CSS variables + classes for all animations
+
+A small JS module (ES6) using GSAP + Intersection Observer for scroll-triggered animations with a CSS-only fallback
+
+Notes about accessibility & performance, and prefers-reduced-motion support
+
+Animation spec (component-by-component)
+
+Hero (Parallax + Text Entrance + CTA)
+
+Background: very subtle parallax on scroll (image shifts 10–15px slower than viewport).
+
+Headline: 3-line staggered entrance — each line fades in + rises (y: 18px → 0) with 120ms stagger.
+
+Subheadline: fades in after headline with 200ms delay.
+
+CTAs: default state — blue gradient. On hover — animate background to yellow gradient (smooth 300ms), lift translateY(-4px), and slide-in arrow. On load: subtle scale (1 → 1.02) loop once.
+
+Implementation hint: use GSAP timeline for headline and subheadline entrance. Parallax via translateY on background container (throttled by requestAnimationFrame or GSAP ScrollTrigger).
+
+Why Choose / Feature Icons
+
+Each icon + card: staggered fade-up on initial scroll into view (duration 420ms, ease out).
+
+Microinteraction: hover the icon — small 3D tilt (rotateX / rotateY up to 6°) + glow ring (box-shadow pulse 300ms).
+
+Implementation: Intersection Observer to trigger GSAP sequence only once.
+
+Program Cards (Interactive)
+
+Card load: subtle scale from 0.98 → 1 with opacity fade.
+
+Hover: card lifts (translateY -8px), shadow increases, and the illustration performs a soft parallax shift (image moves slightly down and scale 1.04). Buttons animate color swap (blue → yellow) with underline sweep on the “Learn More”.
+
+CTA inside card: a micro bounce on click (scale 0.98 → 1).
+
+Implementation fallback: CSS :hover transitions for shadow and transform; JS-enhanced parallax optional.
+
+Interactive Puzzle Panel
+
+On scroll into view: puzzle floats in with a 3D rotation and soft bounce.
+
+On hover over puzzle image: subtle floating bobbing animation (infinite but paused when not hovered). Clicking the puzzle “Go!” button should ripple from click point.
+
+Implementation: CSS keyframes for bobbing + JS for click ripple effect.
+
+Testimonials
+
+Show as a carousel with 3D card stack transition (center card larger & forward, side cards slightly rotated and faded). Swiping or arrow click triggers GSAP timeline to animate rotation & z-index swap.
+
+Each testimonial reveals stars with a quick scale/pop on show.
+
+Provide an autoplay option (5–6s) that pauses on hover or keyboard focus.
+
+Bottom CTA Strip
+
+Use a slow gradient animation (animated background gradient shift left ↔ right 6s ease) behind CTA to create premium feel.
+
+Button hover: animate to orange-yellow gradient and add a soft glow ring.
+
+Micro-interactions & Accessibility
+
+Focus states: all interactive elements must have visible focus rings (not just color change).
+
+Keyboard navigable: carousel and all buttons must be usable via keyboard (arrow keys for carousel).
+
+prefers-reduced-motion: detect and disable non-essential animations (parallax, infinite bobs, autoplay) — keep only instant state changes.
+
+Provide aria-live or visually hidden status updates when carousel slides change.
+
+Performance & Best Practices
+
+Animate transforms and opacity only (avoid animating layout properties).
+
+Use will-change sparingly on hover states only; remove after transition ends.
+
+Debounce scroll listeners and prefer Intersection Observer or GSAP ScrollTrigger.
+
+Minimize repaints: use GPU-accelerated transforms (translate3d) where necessary.
+
+Bundle: provide an ES module with tree-shakable code; keep GSAP footprint minimal (only load the plugins used).
+
+Fallbacks & CSS-only
+
+Provide CSS-only hover states for CTA, cards and icons so the site remains interactive without JS.
+
+For parallax and scroll-triggered reveals, fall back to simple CSS fade-in (no motion) if JS is disabled.
+
+Testing checklist to deliver
+
+Desktop, tablet, mobile responsiveness validated.
+
+prefers-reduced-motion toggling tested.
+
+Lighthouse performance and accessibility checks: animations should not drop CLS or increase TBT significantly.
+
+Cross-browser checks (Chrome, Firefox, Safari, Edge).
