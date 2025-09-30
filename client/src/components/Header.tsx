@@ -1,16 +1,37 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+
+  const courses = [
+    { href: "/programs/abacus", label: "Abacus" },
+    { href: "/programs/acavedic-maths", label: "AcaVedic Maths" },
+    { href: "/programs/memory-science", label: "Memory Science" },
+    { href: "/programs/robotics", label: "Robotics" },
+    { href: "/programs/coding", label: "Coding" },
+    { href: "/programs/stem", label: "STEM" },
+    { href: "/programs/dmit-psychometric", label: "DMIT & Psychometric" },
+    { href: "/programs/handwriting-calligraphy", label: "Handwriting & Calligraphy" },
+    { href: "/programs/public-speaking", label: "Public Speaking" },
+    { href: "/programs/phonics", label: "Phonics" },
+  ];
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/programs", label: "Programs" },
     { href: "/puzzles", label: "Puzzles & Games" },
     { href: "/about", label: "About Us" },
     { href: "/resources", label: "Resources" },
@@ -28,6 +49,50 @@ export function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
+            <Link href="/">
+              <span
+                className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                  location === "/"
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
+                data-testid="link-nav-home"
+              >
+                Home
+              </span>
+            </Link>
+
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger 
+                    className={`text-sm font-medium h-auto py-0 ${
+                      location.startsWith("/programs")
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                    data-testid="link-nav-programs"
+                  >
+                    Programs
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {courses.map((course) => (
+                        <Link key={course.href} href={course.href}>
+                          <NavigationMenuLink
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate active-elevate-2 cursor-pointer"
+                            data-testid={`link-course-${course.label.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
+                          >
+                            <div className="text-sm font-medium leading-none">{course.label}</div>
+                          </NavigationMenuLink>
+                        </Link>
+                      ))}
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
@@ -73,6 +138,46 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t">
             <nav className="flex flex-col gap-3">
+              <Link href="/">
+                <span
+                  className={`block py-2 px-3 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                    location === "/"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover-elevate"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  data-testid="link-mobile-home"
+                >
+                  Home
+                </span>
+              </Link>
+
+              <div>
+                <div
+                  className="flex items-center justify-between py-2 px-3 rounded-md text-sm font-medium text-muted-foreground cursor-pointer hover-elevate"
+                  onClick={() => setMobileProgramsOpen(!mobileProgramsOpen)}
+                  data-testid="link-mobile-programs"
+                >
+                  <span>Programs</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${mobileProgramsOpen ? 'rotate-180' : ''}`} />
+                </div>
+                {mobileProgramsOpen && (
+                  <div className="ml-4 mt-2 flex flex-col gap-2">
+                    {courses.map((course) => (
+                      <Link key={course.href} href={course.href}>
+                        <span
+                          className="block py-2 px-3 rounded-md text-sm font-medium text-muted-foreground hover-elevate cursor-pointer"
+                          onClick={() => setMobileMenuOpen(false)}
+                          data-testid={`link-mobile-course-${course.label.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
+                        >
+                          {course.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <span
