@@ -119,7 +119,19 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© 2024 Abacuswalla. All rights reserved.</p>
+          <p>© 2025 Abacuswalla. All rights reserved.</p>
+          <p className="mt-2">
+            Designed & Maintained by{" "}
+            <a
+              href="https://synergybrandarchitect.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+              data-testid="link-synergy"
+            >
+              Ayenergy Brand Architect
+            </a>
+          </p>
         </div>
       </div>
     </footer>
