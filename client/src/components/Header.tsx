@@ -78,14 +78,16 @@ export function Header() {
                   <NavigationMenuContent>
                     <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                       {courses.map((course) => (
-                        <Link key={course.href} href={course.href}>
-                          <NavigationMenuLink
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate active-elevate-2 cursor-pointer"
-                            data-testid={`link-course-${course.label.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
-                          >
-                            <div className="text-sm font-medium leading-none">{course.label}</div>
-                          </NavigationMenuLink>
-                        </Link>
+                        <NavigationMenuLink key={course.href} asChild>
+                          <Link href={course.href}>
+                            <div
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate active-elevate-2 cursor-pointer"
+                              data-testid={`link-course-${course.label.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
+                            >
+                              <div className="text-sm font-medium leading-none">{course.label}</div>
+                            </div>
+                          </Link>
+                        </NavigationMenuLink>
                       ))}
                     </div>
                   </NavigationMenuContent>
