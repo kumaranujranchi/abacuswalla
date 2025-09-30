@@ -24,6 +24,14 @@ import DMITPsychometricPage from "@/pages/programs/DMITPsychometricPage";
 import HandwritingCalligraphyPage from "@/pages/programs/HandwritingCalligraphyPage";
 import PublicSpeakingPage from "@/pages/programs/PublicSpeakingPage";
 import PhonicsPage from "@/pages/programs/PhonicsPage";
+import ForSchoolsPage from "@/pages/partnership/ForSchoolsPage";
+import ForIndividualsPage from "@/pages/partnership/ForIndividualsPage";
+import StudentEnrollmentPage from "@/pages/enrollment/StudentEnrollmentPage";
+import AbacusOlympiadPage from "@/pages/olympiad/AbacusOlympiadPage";
+import TalentOlympiadPage from "@/pages/olympiad/TalentOlympiadPage";
+import DMITPage from "@/pages/counselling/DMITPage";
+import PsychosomaticTestPage from "@/pages/counselling/PsychosomaticTestPage";
+import CombinedTestPage from "@/pages/counselling/CombinedTestPage";
 
 function Router() {
   return (
@@ -40,6 +48,14 @@ function Router() {
       <Route path="/programs/handwriting-calligraphy" component={HandwritingCalligraphyPage} />
       <Route path="/programs/public-speaking" component={PublicSpeakingPage} />
       <Route path="/programs/phonics" component={PhonicsPage} />
+      <Route path="/partnership/for-schools" component={ForSchoolsPage} />
+      <Route path="/partnership/for-individuals" component={ForIndividualsPage} />
+      <Route path="/enrollment/students" component={StudentEnrollmentPage} />
+      <Route path="/olympiad/abacus" component={AbacusOlympiadPage} />
+      <Route path="/olympiad/talent" component={TalentOlympiadPage} />
+      <Route path="/counselling/dmit" component={DMITPage} />
+      <Route path="/counselling/psychosomatic" component={PsychosomaticTestPage} />
+      <Route path="/counselling/combined" component={CombinedTestPage} />
       <Route path="/puzzles" component={PuzzlesPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/testimonials" component={TestimonialsPage} />

@@ -5,8 +5,8 @@ export function Footer() {
   return (
     <footer className="border-t bg-card mt-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+          <div className="lg:col-span-2">
             <h3 className="text-2xl font-heading font-bold text-primary mb-4">
               Abacuswalla
             </h3>
@@ -39,33 +39,30 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">Partnerships</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/">
-                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-home">
-                    Home
+                <Link href="/partnership/for-schools">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-schools">
+                    For Schools
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/programs">
-                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-programs">
-                    Programs
+                <Link href="/partnership/for-individuals">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-individuals">
+                    For Individuals
                   </span>
                 </Link>
               </li>
+            </ul>
+
+            <h4 className="font-semibold mb-4 mt-6">Enrollment</h4>
+            <ul className="space-y-2">
               <li>
-                <Link href="/about">
-                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-about">
-                    About Us
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact">
-                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-contact">
-                    Contact
+                <Link href="/enrollment/students">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-enrollment">
+                    Student Enrollment
                   </span>
                 </Link>
               </li>
@@ -73,7 +70,25 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
+            <h4 className="font-semibold mb-4">Olympiad</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/olympiad/abacus">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-abacus-olympiad">
+                    Abacus Olympiad
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/olympiad/talent">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-talent-olympiad">
+                    Talent Olympiad
+                  </span>
+                </Link>
+              </li>
+            </ul>
+
+            <h4 className="font-semibold mb-4 mt-6">Resources</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/puzzles">
@@ -89,10 +104,30 @@ export function Footer() {
                   </span>
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Counselling</h4>
+            <ul className="space-y-2">
               <li>
-                <Link href="/testimonials">
-                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-testimonials">
-                    Success Stories
+                <Link href="/counselling/dmit">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-dmit">
+                    DMIT Test
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/counselling/psychosomatic">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-psychosomatic">
+                    Psychosomatic Test
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/counselling/combined">
+                  <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer" data-testid="link-footer-combined">
+                    Combined Test
                   </span>
                 </Link>
               </li>
