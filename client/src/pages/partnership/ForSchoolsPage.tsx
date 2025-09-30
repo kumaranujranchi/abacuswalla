@@ -79,10 +79,10 @@ export default function ForSchoolsPage() {
               Enhance cognitive development, boost academic performance, and prepare students for future success.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full" data-testid="button-schedule-demo">
+              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-schedule-demo">
                 <Link href="/contact">Schedule a Demo</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-download-brochure">
+              <Button asChild size="lg" variant="outline" className="rounded-full hover-elevate" data-testid="button-download-brochure">
                 <Link href="/contact">Download Brochure</Link>
               </Button>
             </div>
@@ -221,7 +221,7 @@ export default function ForSchoolsPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Let's discuss how Abacuswalla can enhance your students' learning experience
           </p>
-          <Button asChild size="lg" variant="secondary" className="rounded-full" data-testid="button-partner-cta">
+          <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-partner-cta">
             <Link href="/contact">Become a Partner School</Link>
           </Button>
         </div>

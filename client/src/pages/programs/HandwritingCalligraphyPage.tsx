@@ -44,7 +44,7 @@ export default function HandwritingCalligraphyPage() {
               </p>
             </div>
             
-            <Button asChild size="lg" className="rounded-full font-accent" data-testid="button-enroll">
+            <Button asChild size="lg" className="rounded-full font-accent cta-hover" data-testid="button-enroll">
               <Link href="/contact">Enroll Now</Link>
             </Button>
           </div>
@@ -137,7 +137,7 @@ export default function HandwritingCalligraphyPage() {
           <p className="text-muted-foreground mb-6">
             Transform your child's handwriting into beautiful art
           </p>
-          <Button asChild size="lg" className="rounded-full font-accent" data-testid="button-book-demo">
+          <Button asChild size="lg" className="rounded-full font-accent cta-hover" data-testid="button-book-demo">
             <Link href="/contact">Book a Free Demo Class</Link>
           </Button>
         </div>

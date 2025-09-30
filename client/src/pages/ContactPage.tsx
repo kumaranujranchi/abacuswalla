@@ -37,8 +37,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold mb-1">Address</h3>
                         <p className="text-muted-foreground">
-                          123 Learning Street<br />
-                          Education City, EC 12345
+                          Dhurwa, Ranchi – 834004
                         </p>
                       </div>
                     </div>
@@ -51,7 +50,11 @@ export default function ContactPage() {
                       <Phone className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <h3 className="font-semibold mb-1">Phone</h3>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                        <p className="text-muted-foreground">
+                          <a href="tel:9525230232" className="hover:text-primary transition-colors">
+                            9525230232
+                          </a>
+                        </p>
                       </div>
                     </div>
                   </CardContent>
