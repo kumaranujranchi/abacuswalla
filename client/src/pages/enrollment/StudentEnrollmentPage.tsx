@@ -326,7 +326,7 @@ export default function StudentEnrollmentPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full rounded-full cta-hover"
+                    className="w-full rounded-full cta-gradient-button"
                     disabled={createInquiryMutation.isPending}
                     data-testid="button-submit-enquiry"
                   >
@@ -352,9 +352,13 @@ export default function StudentEnrollmentPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Enroll now for the upcoming batch and give your child the gift of mental math mastery
           </p>
-          <Button asChild size="lg" variant="secondary" className="rounded-full cta-hover" data-testid="button-enroll-cta">
-            <a href="#enquiry">Enroll Your Child</a>
-          </Button>
+          <a
+            href="#enquiry"
+            className="cta-gradient-button"
+            data-testid="button-enroll-cta"
+          >
+            Enroll Your Child
+          </a>
         </div>
       </section>
     </div>

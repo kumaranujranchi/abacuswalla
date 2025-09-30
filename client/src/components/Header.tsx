@@ -123,7 +123,7 @@ export function Header() {
             <ThemeToggle />
             <Button
               asChild
-              className="hidden md:inline-flex rounded-full font-accent cta-hover"
+              className="hidden md:inline-flex rounded-full font-accent cta-gradient-button"
               data-testid="button-book-demo"
             >
               <Link href="/contact">Book Demo Class</Link>
@@ -205,7 +205,7 @@ export function Header() {
               ))}
               <Button
                 asChild
-                className="w-full rounded-full font-accent cta-hover"
+                className="w-full rounded-full font-accent cta-gradient-button"
                 data-testid="button-mobile-book-demo"
               >
                 <Link href="/contact">Book Demo Class</Link>

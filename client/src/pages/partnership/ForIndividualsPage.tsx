@@ -95,9 +95,13 @@ export default function ForIndividualsPage() {
               Make a difference in children's lives while building a rewarding career.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full cta-hover" data-testid="button-apply-now">
-                <Link href="/contact">Apply Now</Link>
-              </Button>
+              <a
+                href="/contact"
+                className="cta-gradient-button"
+                data-testid="button-apply-now"
+              >
+                Apply Now
+              </a>
               <Button asChild size="lg" variant="outline" className="rounded-full hover-elevate" data-testid="button-learn-more">
                 <Link href="/contact">Request Information</Link>
               </Button>
@@ -292,9 +296,13 @@ export default function ForIndividualsPage() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
             Join us and make a meaningful impact while building a successful career
           </p>
-          <Button asChild size="lg" variant="default" className="rounded-full cta-hover" data-testid="button-partner-cta">
-            <Link href="/contact">Apply for Partnership</Link>
-          </Button>
+          <a
+            href="/contact"
+            className="cta-gradient-button"
+            data-testid="button-partner-cta"
+          >
+            Apply for Partnership
+          </a>
         </div>
       </section>
     </div>
