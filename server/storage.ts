@@ -55,6 +55,61 @@ export class MemStorage implements IStorage {
     this.worksheets = new Map();
     this.quizProgress = [];
     this.emailCaptures = new Map();
+    
+    this.seedInitialData();
+  }
+
+  private seedInitialData() {
+    const seedPrograms = [
+      {
+        id: randomUUID(),
+        title: "Junior Module",
+        ageRange: "5-7 years",
+        duration: "6 months",
+        description: "Perfect for young beginners",
+        benefits: ["Number recognition", "Basic addition & subtraction", "Visual learning"],
+        curriculum: ["Number concepts", "Simple calculations", "Fun activities"],
+        color: "primary",
+        imageUrl: null
+      },
+      {
+        id: randomUUID(),
+        title: "Foundation Module",
+        ageRange: "8-10 years",
+        duration: "8 months",
+        description: "Build strong mental math foundation",
+        benefits: ["Faster calculations", "Improved concentration", "Mental visualization"],
+        curriculum: ["Addition & subtraction", "Multiplication basics", "Problem solving"],
+        color: "secondary",
+        imageUrl: null
+      },
+      {
+        id: randomUUID(),
+        title: "Advanced Module",
+        ageRange: "11-12 years",
+        duration: "10 months",
+        description: "Master complex calculations",
+        benefits: ["Advanced mental math", "Competition readiness", "Critical thinking"],
+        curriculum: ["Complex operations", "Speed techniques", "Application problems"],
+        color: "accent",
+        imageUrl: null
+      },
+      {
+        id: randomUUID(),
+        title: "Grand Master Module",
+        ageRange: "13-14 years",
+        duration: "12 months",
+        description: "Elite level mastery",
+        benefits: ["Championship skills", "Lightning speed", "Academic excellence"],
+        curriculum: ["Advanced techniques", "Competition prep", "Real-world applications"],
+        color: "primary",
+        imageUrl: null
+      }
+    ];
+
+    seedPrograms.forEach(program => {
+      this.programs.set(program.id, program as Program);
+    });
   }
 
   // Programs

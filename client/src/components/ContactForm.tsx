@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,21 +10,66 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import type { Program } from "@shared/schema";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 export function ContactForm() {
-  const [formData, setFormData] = useState({
-    parentName: "",
-    email: "",
-    phone: "",
-    childName: "",
-    childAge: "",
-    program: "",
-    message: "",
+  const { toast } = useToast();
+  
+  const { data: programs = [] } = useQuery<Program[]>({
+    queryKey: ["/api/programs"],
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const form = useForm<InsertInquiry>({
+    resolver: zodResolver(insertInquirySchema),
+    defaultValues: {
+      parentName: "",
+      email: "",
+      phone: "",
+      childName: "",
+      childAge: "",
+      programId: undefined,
+      message: "",
+    },
+  });
+
+  const submitInquiry = useMutation({
+    mutationFn: async (data: InsertInquiry) => {
+      const res = await apiRequest("POST", "/api/inquiries", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Demo Booked Successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      form.reset();
+      queryClient.invalidateQueries({ queryKey: ["/api/inquiries"] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to submit inquiry. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmit = (data: InsertInquiry) => {
+    submitInquiry.mutate(data);
   };
 
   return (
@@ -34,125 +78,168 @@ export function ContactForm() {
         <CardTitle className="font-heading text-2xl">Book a Free Demo Class</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="parentName">Parent's Name *</Label>
-              <Input
-                id="parentName"
-                value={formData.parentName}
-                onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                placeholder="Enter your name"
-                required
-                data-testid="input-parent-name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="parentName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Parent's Name *</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your name"
+                        data-testid="input-parent-name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email *</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="your@email.com"
+                        data-testid="input-email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="your@email.com"
-                required
-                data-testid="input-email"
+            <div className="grid md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number *</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="tel"
+                        placeholder="+1 (555) 123-4567"
+                        data-testid="input-phone"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="childName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Child's Name *</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter child's name"
+                        data-testid="input-child-name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number *</Label>
-              <Input
-                id="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+1 (555) 123-4567"
-                required
-                data-testid="input-phone"
+            <div className="grid md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="childAge"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Child's Age *</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger data-testid="select-child-age">
+                          <SelectValue placeholder="Select age" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {Array.from({ length: 10 }, (_, i) => i + 5).map((age) => (
+                          <SelectItem key={age} value={age.toString()}>
+                            {age} years
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="programId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Interested Program</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value || undefined}>
+                      <FormControl>
+                        <SelectTrigger data-testid="select-program">
+                          <SelectValue placeholder="Select program" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {programs.map((program) => (
+                          <SelectItem key={program.id} value={program.id}>
+                            {program.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="childName">Child's Name *</Label>
-              <Input
-                id="childName"
-                value={formData.childName}
-                onChange={(e) => setFormData({ ...formData, childName: e.target.value })}
-                placeholder="Enter child's name"
-                required
-                data-testid="input-child-name"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="childAge">Child's Age *</Label>
-              <Select
-                value={formData.childAge}
-                onValueChange={(value) => setFormData({ ...formData, childAge: value })}
-              >
-                <SelectTrigger id="childAge" data-testid="select-child-age">
-                  <SelectValue placeholder="Select age" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="5">5 years</SelectItem>
-                  <SelectItem value="6">6 years</SelectItem>
-                  <SelectItem value="7">7 years</SelectItem>
-                  <SelectItem value="8">8 years</SelectItem>
-                  <SelectItem value="9">9 years</SelectItem>
-                  <SelectItem value="10">10 years</SelectItem>
-                  <SelectItem value="11">11 years</SelectItem>
-                  <SelectItem value="12">12 years</SelectItem>
-                  <SelectItem value="13">13 years</SelectItem>
-                  <SelectItem value="14">14 years</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="program">Interested Program</Label>
-              <Select
-                value={formData.program}
-                onValueChange={(value) => setFormData({ ...formData, program: value })}
-              >
-                <SelectTrigger id="program" data-testid="select-program">
-                  <SelectValue placeholder="Select program" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="junior">Junior Module</SelectItem>
-                  <SelectItem value="foundation">Foundation Module</SelectItem>
-                  <SelectItem value="advanced">Advanced Module</SelectItem>
-                  <SelectItem value="grandmaster">Grand Master Module</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="message">Message (Optional)</Label>
-            <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Any specific questions or requirements?"
-              rows={4}
-              data-testid="textarea-message"
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message (Optional)</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Any specific questions or requirements?"
+                      rows={4}
+                      data-testid="textarea-message"
+                      {...field}
+                      value={field.value || ""}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <Button
-            type="submit"
-            className="w-full rounded-full font-accent"
-            data-testid="button-submit-contact"
-          >
-            Book Demo Class
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              className="w-full rounded-full font-accent"
+              data-testid="button-submit-contact"
+              disabled={submitInquiry.isPending}
+            >
+              {submitInquiry.isPending ? "Submitting..." : "Book Demo Class"}
+            </Button>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   );

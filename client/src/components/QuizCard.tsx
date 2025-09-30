@@ -3,6 +3,12 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Sparkles } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import type { InsertQuizProgress } from "@shared/schema";
 
 interface QuizQuestion {
   question: string;
@@ -22,6 +28,32 @@ export function QuizCard({ title, difficulty, questions }: QuizCardProps) {
   const [showResult, setShowResult] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
+  const [showEmailPrompt, setShowEmailPrompt] = useState(false);
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const saveProgress = useMutation({
+    mutationFn: async (data: InsertQuizProgress) => {
+      const res = await apiRequest("POST", "/api/quiz-progress", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Progress Saved!",
+        description: "Your quiz score has been recorded.",
+      });
+      setShowEmailPrompt(false);
+      setEmail("");
+      queryClient.invalidateQueries({ queryKey: ["/api/quiz-progress"] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to save progress. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
 
   const handleAnswer = (answerIndex: number) => {
     if (answered) return;
@@ -50,6 +82,25 @@ export function QuizCard({ title, difficulty, questions }: QuizCardProps) {
     setShowResult(false);
     setSelectedAnswer(null);
     setAnswered(false);
+    setShowEmailPrompt(false);
+  };
+
+  const handleSaveProgress = () => {
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email to save progress.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const quizSlug = title.toLowerCase().replace(/\s+/g, '-');
+    saveProgress.mutate({
+      email,
+      quizSlug,
+      score,
+      totalQuestions: questions.length,
+    });
   };
 
   const difficultyColor = {
@@ -126,6 +177,20 @@ export function QuizCard({ title, difficulty, questions }: QuizCardProps) {
                 />
               ))}
             </div>
+
+            {showEmailPrompt && (
+              <div className="mt-6 space-y-3 text-left max-w-sm mx-auto">
+                <Label htmlFor="quiz-email">Enter your email to save progress</Label>
+                <Input
+                  id="quiz-email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  data-testid="input-quiz-email"
+                />
+              </div>
+            )}
           </div>
         )}
       </CardContent>
@@ -149,14 +214,26 @@ export function QuizCard({ title, difficulty, questions }: QuizCardProps) {
             >
               Try Again
             </Button>
-            <Button
-              variant="outline"
-              className="flex-1 rounded-full"
-              onClick={() => console.log("Save progress triggered")}
-              data-testid="button-save-progress"
-            >
-              Save Progress
-            </Button>
+            {showEmailPrompt ? (
+              <Button
+                variant="default"
+                className="flex-1 rounded-full"
+                onClick={handleSaveProgress}
+                disabled={saveProgress.isPending}
+                data-testid="button-save-progress"
+              >
+                {saveProgress.isPending ? "Saving..." : "Submit"}
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                className="flex-1 rounded-full"
+                onClick={() => setShowEmailPrompt(true)}
+                data-testid="button-save-progress"
+              >
+                Save Progress
+              </Button>
+            )}
           </div>
         )}
       </CardFooter>
