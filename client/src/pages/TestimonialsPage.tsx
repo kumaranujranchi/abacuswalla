@@ -3,55 +3,54 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 
 export default function TestimonialsPage() {
-  //todo: remove mock functionality
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      childName: "Emily",
+      name: "Amit Kumar",
+      childName: "Rohan",
       rating: 5,
-      quote: "Emily's math skills have improved dramatically! She's more confident and actually enjoys math now. The teachers are fantastic!",
+      quote: "Rohan's confidence in math has grown so much! He now solves sums quickly and even enjoys practicing at home. The teachers here are excellent!",
       program: "Foundation Module",
-      location: "New York, NY"
+      location: "Ranchi, Jharkhand"
     },
     {
-      name: "Michael Chen",
-      childName: "David",
+      name: "Pooja Singh",
+      childName: "Ananya",
       rating: 5,
-      quote: "The structured approach and caring teachers made all the difference. David went from struggling to excelling in just 6 months!",
+      quote: "The personal attention and structured classes made a big difference. Ananya went from average scores to becoming one of the top students in just a few months.",
       program: "Advanced Module",
-      location: "San Francisco, CA"
+      location: "Patna, Bihar"
     },
     {
-      name: "Priya Patel",
-      childName: "Anika",
+      name: "Sandeep Das",
+      childName: "Souvik",
       rating: 5,
-      quote: "Best investment we made in Anika's education. Her focus and mental math abilities are incredible now.",
+      quote: "Best decision we took for Souvik's learning! His mental math speed and focus have improved a lot. He is now more confident in school competitions too.",
       program: "Junior Module",
-      location: "Austin, TX"
+      location: "Kolkata, West Bengal"
     },
     {
-      name: "James Anderson",
-      childName: "Lucas",
+      name: "Ritika Sharma",
+      childName: "Aarav",
       rating: 5,
-      quote: "Lucas was struggling with math anxiety. Now he's the top of his class and even helps his classmates!",
+      quote: "Aarav was very anxious about math earlier, but now he enjoys solving problems and even helps his classmates. Truly grateful to the mentors.",
       program: "Foundation Module",
-      location: "Chicago, IL"
+      location: "Dhanbad, Jharkhand"
     },
     {
-      name: "Maria Rodriguez",
-      childName: "Sofia",
+      name: "Prakash Choudhary",
+      childName: "Neha",
       rating: 5,
-      quote: "The online classes are so engaging! Sofia looks forward to every session. Amazing curriculum and supportive instructors.",
+      quote: "The online classes are engaging and interactive. Neha eagerly waits for her sessions and has shown great improvement in both speed and accuracy.",
       program: "Advanced Module",
-      location: "Miami, FL"
+      location: "Gaya, Bihar"
     },
     {
-      name: "Robert Kim",
-      childName: "Alex",
+      name: "Shalini Roy",
+      childName: "Ishita",
       rating: 5,
-      quote: "We've tried other programs, but Abacuswalla is by far the best. Alex's improvement in just 3 months has been remarkable.",
+      quote: "We tried other programs before, but this one is the most effective. Ishita's progress in just 4 months has been amazing. Highly recommended!",
       program: "Junior Module",
-      location: "Seattle, WA"
+      location: "Howrah, West Bengal"
     },
   ];
 
