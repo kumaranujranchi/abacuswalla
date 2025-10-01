@@ -121,13 +121,15 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Button
-              asChild
-              className="hidden md:inline-flex rounded-full font-accent cta-gradient-button"
-              data-testid="button-book-demo"
-            >
-              <Link href="/contact">Book Demo Class</Link>
-            </Button>
+            <div className="hidden md:block">
+              <Button
+                asChild
+                className="rounded-full font-accent cta-gradient-button"
+                data-testid="button-book-demo"
+              >
+                <Link href="/contact">Book Demo Class</Link>
+              </Button>
+            </div>
 
             <Button
               variant="ghost"
