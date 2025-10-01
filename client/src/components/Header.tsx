@@ -31,7 +31,7 @@ export function Header() {
   ];
 
   const navItems = [
-    { href: "/puzzles", label: "Puzzles & Games" },
+    { href: "/puzzles", label: "Games" },
     { href: "/about", label: "About Us" },
     { href: "/resources", label: "Resources" },
     { href: "/testimonials", label: "Testimonials" },

@@ -1,0 +1,70 @@
+/* Playful UI helpers */
+.playful-section {
+  position: relative;
+}
+.playful-section::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  background:
+    radial-gradient(12px 12px at 12px 12px, hsl(var(--accent) / 0.25) 99%, transparent 100%),
+    radial-gradient(8px 8px at 48px 36px, hsl(var(--primary) / 0.25) 99%, transparent 100%),
+    radial-gradient(10px 10px at 80px 70px, hsl(var(--secondary) / 0.25) 99%, transparent 100%);
+  filter: blur(0.2px);
+  opacity: 0.6;
+  border-radius: 24px;
+}
+.playful-section::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  background:
+    conic-gradient(from 0deg at 50% 50%, hsl(var(--primary) / 0.22), hsl(var(--accent) / 0.22), hsl(var(--secondary) / 0.22), hsl(var(--primary) / 0.22));
+  mask: radial-gradient(60px 60px at 70px 70px, #000 99%, transparent 100%);
+  opacity: 0.35;
+  border-radius: 32px;
+}
+
+.hover-elevate {
+  transition: transform var(--duration-normal) var(--ease-bounce), box-shadow var(--duration-normal) var(--ease-smooth);
+}
+.hover-elevate:hover {
+  transform: translateY(-2px) rotate(-0.25deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-gradient-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: hsl(var(--primary-foreground));
+  background-image: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)) 60%, hsl(var(--secondary)));
+  transition: filter var(--duration-fast) var(--ease-smooth), transform var(--duration-fast) var(--ease-bounce);
+}
+.cta-gradient-button:hover {
+  filter: brightness(1.05) contrast(1.05);
+  transform: translateY(-1px);
+}
+.cta-gradient-button:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* Fun dotted divider (utility) */
+.funky-divider {
+  --dotted-color: hsl(var(--muted-foreground));
+  background-image: radial-gradient(var(--dotted-color) 1px, transparent 1px);
+  background-size: 8px 8px;
+  height: 12px;
+  mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+}

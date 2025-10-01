@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { BenefitCard } from "@/components/BenefitCard";
+import SectionDivider from "@/components/SectionDivider";
 import { ProgramCard } from "@/components/ProgramCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
@@ -185,7 +186,7 @@ export default function HomePage() {
     <div>
       <Hero />
 
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16">
+      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-16 playful-section">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">
             Why Choose Abacuswalla?
@@ -241,7 +242,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-card py-16">
+      <SectionDivider className="text-primary/40" />
+
+      <section className="bg-card py-16 playful-section">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">
@@ -260,7 +263,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
+      <SectionDivider className="text-accent/40" />
+
+      <section className="container mx-auto px-4 md:px-6 lg:px-8 py-20 playful-section">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-6 animate-fade-up">
             <div>
@@ -299,7 +304,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-card py-16">
+      <SectionDivider className="text-secondary/40" />
+
+      <section className="bg-card py-16 playful-section">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-heading font-bold text-3xl md:text-5xl mb-4">

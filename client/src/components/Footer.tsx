@@ -132,7 +132,7 @@ export function Footer() {
                   <Link href="/puzzles">
                     <span className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 inline-flex items-center gap-1 transition-all cursor-pointer group" data-testid="link-footer-puzzles">
                       <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      Puzzles & Games
+                      Games
                     </span>
                   </Link>
                 </li>
