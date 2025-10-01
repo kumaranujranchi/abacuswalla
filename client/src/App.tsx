@@ -24,6 +24,7 @@ import DMITPsychometricPage from "@/pages/programs/DMITPsychometricPage";
 import HandwritingCalligraphyPage from "@/pages/programs/HandwritingCalligraphyPage";
 import PublicSpeakingPage from "@/pages/programs/PublicSpeakingPage";
 import PhonicsPage from "@/pages/programs/PhonicsPage";
+import Chatbot from "@/components/Chatbot";
 import ForSchoolsPage from "@/pages/partnership/ForSchoolsPage";
 import ForIndividualsPage from "@/pages/partnership/ForIndividualsPage";
 import StudentEnrollmentPage from "@/pages/enrollment/StudentEnrollmentPage";
@@ -76,6 +77,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <Chatbot />
           <Toaster />
         </ThemeProvider>
       </TooltipProvider>
