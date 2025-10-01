@@ -206,7 +206,7 @@ export default function Chatbot() {
           <MessageSquare className="mr-2 h-5 w-5" /> Chat
         </Button>
       ) : (
-        <Card className="w-[340px] sm:w-[380px] shadow-xl">
+        <Card className="w-[88vw] max-w-[320px] sm:w-[380px] shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between py-2">
             <CardTitle className="text-lg">Assistant</CardTitle>
             <Button variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Close">
@@ -216,7 +216,7 @@ export default function Chatbot() {
           <CardContent className="pt-0">
             <div
               ref={scrollRef}
-              className="h-64 overflow-y-auto space-y-3 border rounded-md p-3 bg-muted/20"
+              className="h-52 sm:h-64 overflow-y-auto space-y-3 border rounded-md p-3 bg-muted/20"
             >
               {messages.map((m, i) => (
                 <div key={i} className={m.role === "bot" ? "text-sm" : "text-sm text-right"}>
