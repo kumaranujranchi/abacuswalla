@@ -225,7 +225,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t bg-card/50 backdrop-blur-sm">
+        <div className="border-t bg-card/50 backdrop-blur-sm mb-24 md:mb-0">
           <div className="container mx-auto px-4 md:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground">

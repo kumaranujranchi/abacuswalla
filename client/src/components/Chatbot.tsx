@@ -195,7 +195,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div className="fixed bottom-24 right-4 z-50 md:bottom-6">
+    <div className="fixed bottom-4 right-4 z-50">
       {!open ? (
         <Button
           onClick={() => setOpen(true)}
