@@ -229,18 +229,17 @@ export function Footer() {
           <div className="container mx-auto px-4 md:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground">
-                © 2025 Abacuswalla. All rights reserved.
+                © 2026 Abacuswalla. All rights reserved.
               </p>
               <p className="text-sm text-muted-foreground">
-                Designed & Maintained by{" "}
+                This Website is Running{" "}
                 <a
-                  href="https://synergybrandarchitect.in"
+                  href="https://www.siteonsub.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#FF6B35] hover:text-[#FF8555] hover:underline font-medium transition-all duration-300"
-                  data-testid="link-synergy"
+                  className="text-primary hover:underline font-medium transition-all duration-300"
                 >
-                  Synergy Brand Architect
+                  SiteonSub
                 </a>
               </p>
             </div>
