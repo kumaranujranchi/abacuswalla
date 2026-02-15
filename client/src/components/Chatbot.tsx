@@ -52,7 +52,7 @@ export default function Chatbot() {
 
   const programTitles = useMemo(() =>
     programs.map((p) => ({ id: p.id, title: p.title.toLowerCase() })),
-  [programs]);
+    [programs]);
 
   const submitInquiry = useMutation({
     mutationFn: async (data: InsertInquiry) => {
@@ -195,7 +195,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-24 right-4 z-50">
       {!open ? (
         <Button
           onClick={() => setOpen(true)}
